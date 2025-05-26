@@ -23,6 +23,12 @@ namespace NotasRapidas.Services
             if (_isInitialized)
                 return;
 
+            // Eliminar BD para pruebas limpias durante el desarrollo
+            //if (File.Exists(_dbPath))
+            //{
+            //     File.Delete(_dbPath);
+            //}
+
             _database = new SQLiteAsyncConnection(_dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache);
             await _database.CreateTableAsync<NotaItem>();
             await _database.CreateTableAsync<Categoria>();
